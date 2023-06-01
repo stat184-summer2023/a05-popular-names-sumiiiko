@@ -76,19 +76,19 @@ The variable that would not appear would be sex.
 ##### What variable(s) in the graph are similar to corresponding variables in the raw data table, but might have been transformed in some way?
 
 My answer here.... 
-The variable sex is not in the graph so this variable has to be transformed. To disregard sex in this graph, a group_by function would be needed containing name and year. Then a summarise function would contain the sum of count of each name per year.
+The variable sex is not in the graph so this variable has to be transformed. To disregard sex in this graph, a group_by function would be needed containing name and year. Then a summarise function would contain the sum of the count of each name per year.
 
 ### Step 4
 
 ##### Have cases been filtered out?
 
 My answer here.... 
-Yes, all the cases excluding the names I picked (Anna, Mary, Emma, Ida, Clara)
+Yes, all the cases excluding the names I picked (Anna, Mary, Emma, Ida, Clara).
 
 ##### Have cases been grouped and summarized within groups in any way?
 
 My answer here.... 
-Yes cases have been grouped by name, year and summarised to the sum of count of each name per year..
+Yes, cases have been grouped by name, and year and summarised to the sum of the count of each name per year.
 
 ##### Have any new variables been introduced?  If so, what the relationship between the new variables and existing variables?
 
