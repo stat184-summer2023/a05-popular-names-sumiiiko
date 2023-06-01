@@ -76,24 +76,24 @@ The variable that would not appear would be sex.
 ##### What variable(s) in the graph are similar to corresponding variables in the raw data table, but might have been transformed in some way?
 
 My answer here.... 
-The variable sex is not in the graph so this variable has to be transformed. To disregard sex in this graph, a group_by function would be needed containing name and year. Then a summarise function would contain the count.
+The variable sex is not in the graph so this variable has to be transformed. To disregard sex in this graph, a group_by function would be needed containing name and year. Then a summarise function would contain the sum of count of each name per year.
 
 ### Step 4
 
 ##### Have cases been filtered out?
 
 My answer here.... 
-Yes, all the cases excluding the names I picked.
+Yes, all the cases excluding the names I picked (Anna, Mary, Emma, Ida, Clara)
 
 ##### Have cases been grouped and summarized within groups in any way?
 
 My answer here.... 
-Yes cases have been grouped and summarised to the 5 BabyNames I picked.
+Yes cases have been grouped by name, year and summarised to the sum of count of each name per year..
 
 ##### Have any new variables been introduced?  If so, what the relationship between the new variables and existing variables?
 
 My answer here.... 
-No new variables have been introduced.
+A new variable was introduced named total, as it was the sum of the total count of each baby name per year regardless of sex.
 
 ### Step 5
 Using the BabyNames data set, filter the data to display just the 5 names that you picked.  Then group the cases by year and name, and count how many total births per year were recorded for each of the names (regardless of sex).  
@@ -102,7 +102,7 @@ Using the BabyNames data set, filter the data to display just the 5 names that y
 BabyNames %>% 
   filter(name == "Anna" | name == "Mary" | name == "Emma" | name == "Ida" | name == "Clara") %>%
   group_by(name,year) %>%
-  summarise(count = sum(count))
+  summarise(total = sum(count))
 ```
 
 
@@ -115,9 +115,16 @@ BabyNames %>%
 ```{r}
 ## Create my glyph ready data set here
 
+GlyphReadyForm <- 
+  BabyNames %>% 
+  filter(
+    name == "Anna" | name == "Mary" | name == "Emma" | name == "Ida" | name == "Clara"
+    ) %>%
+  group_by(name,year) %>%
+  summarise(total = sum(count))
 
 # inspect the result
-
+GlyphReadyForm
 
 ```
 
@@ -140,7 +147,12 @@ If you prepared your `GlyphReadyForm` data set correctly, you should just be abl
 
 ```{r}
 #My code here 
-
+GlyphReadyForm %>%
+  ggplot(aes(x = year, y = total, group = name)) + 
+  geom_line(size = 1, alpha = 0.5, aes(color = name)) + 
+  ylab("Popularity") + 
+  xlab("Year") +
+  ggtitle("Popularity of Names Over Time")
 
 ```
 
