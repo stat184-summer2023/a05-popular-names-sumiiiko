@@ -1,7 +1,7 @@
 ---
 title: 'Activity: Popular Names'
-author: "YOUR NAME HERE"
-date: "DUE DATE"
+author: "Daniel Gao"
+date: "June 4, 2023"
 output:
   html_document:
     df_print: paged
@@ -52,11 +52,13 @@ For steps 5-7, pick any FIVE names you wish. I choose Arnaldo, Ahmid, Nicho, Jen
 *Examine the data you have at hand - for this project the data are the ones available in the `BabyNames` data set. Use at least 2 different functions to examine your data. Then answer the questions: What are the variables are available? What is a case?*
 
 My answer here.... 
+The variables are name, sex, count, and year.
+A case would be the number of babies for each name and for each year.
 
 ```{r}
 ## Look at the data a few different ways (see Ch 9 for more).
-
-
+summary(BabyNames)
+view(BabyNames)
 ```
 
 ### Step 2
@@ -69,33 +71,39 @@ My answer here....
 ##### What variable(s) from the raw data table do not appear at all in the graph?
 
 My answer here.... 
+The variable that would not appear would be sex.
 
 ##### What variable(s) in the graph are similar to corresponding variables in the raw data table, but might have been transformed in some way?
 
 My answer here.... 
-
+The variable sex is not in the graph so this variable has to be transformed. To disregard sex in this graph, a group_by function would be needed containing name and year. Then a summarise function would contain the count.
 
 ### Step 4
 
 ##### Have cases been filtered out?
 
 My answer here.... 
-
+Yes, all the cases excluding the names I picked.
 
 ##### Have cases been grouped and summarized within groups in any way?
 
 My answer here.... 
-
+Yes cases have been grouped and summarised to the 5 BabyNames I picked.
 
 ##### Have any new variables been introduced?  If so, what the relationship between the new variables and existing variables?
 
 My answer here.... 
-
+No new variables have been introduced.
 
 ### Step 5
-
-
 Using the BabyNames data set, filter the data to display just the 5 names that you picked.  Then group the cases by year and name, and count how many total births per year were recorded for each of the names (regardless of sex).  
+
+```{r}
+BabyNames %>% 
+  filter(name == "Anna" | name == "Mary" | name == "Emma" | name == "Ida" | name == "Clara") %>%
+  group_by(name,year) %>%
+  summarise(count = sum(count))
+```
 
 
 ### Step 6
